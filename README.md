@@ -8,9 +8,9 @@ Platform Crowdfunding UKM Indonesia
 
 ## References
 
-[Navbar Search](http://bootsnipp.com/snippets/featured/navbar-search-add-on-bs-3)
-[Kickstarter] (https://www.kickstarter.com/)
-[Kitabisa] (https://kitabisa.com/)
+* [Navbar Search](http://bootsnipp.com/snippets/featured/navbar-search-add-on-bs-3)
+* [Kickstarter] (https://www.kickstarter.com/)
+* [Kitabisa] (https://kitabisa.com/)
 
 ## Copyright and License
 
