@@ -21,7 +21,15 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->helper('url');
-		$this->load->view('header-biasa');
+		$this->load->helper('cookie');
+		if (get_cookie('user_id') == NULL) {
+			$this->load->view('header-biasa');
+		} else {
+			$this->load->model('data_model');
+			$data_user = $this->data_model->get_user(get_cookie('user_id'));
+			$data['user'] = $data_user->result_array()[0]['nama'];
+			$this->load->view('header-user', $data);
+		}
 		$this->load->view('index');
 		$this->load->view('footer');
 	}

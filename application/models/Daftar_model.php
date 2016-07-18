@@ -47,32 +47,6 @@ class Daftar_model extends CI_Model {
 		}
 	}
 
-	public function get_list_provinsi()
-	{
-		return $this->db->get('data_provinsi');
-	}
-
-	public function get_list_kab_kota($id_provinsi=NULL)
-	{
-		if ($id_provinsi === NULL) {
-			return $this->db->get('data_kab_kota');
-		} else {
-			$this->db->where('id_provinsi', $id_provinsi);
-
-			$query = $this->db->get('data_kab_kota');
-			$list_kota = array();
-
-			if ($query->result()) {
-				foreach($query->result() as $kota) {
-					$list_kota[$kota->id] = $kota->nama;
-				}
-				return $list_kota;
-			} else {
-				return false;
-			}
-		}
-	}
-
 }
 
 ?>

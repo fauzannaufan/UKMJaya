@@ -6,7 +6,7 @@
                 var id_provinsi = $('#provinsi').val();
                 $.ajax({
                     type: "POST",
-                    url : "http://localhost/ukmjaya/daftar/get_list_kab_kota/"+id_provinsi,
+                    url : "http://localhost/ukmjaya/data/get_list_kab_kota/"+id_provinsi,
                     success : function(kota) {
                         $.each(kota, function(id,name) {
                             var opt = $('<option/>');
