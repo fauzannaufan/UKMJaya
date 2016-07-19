@@ -46,6 +46,21 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="width: 1250px;">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a>Tentang Kami</a>
+                    </li>
+                </ul>
+                <div class="col-sm-3 col-md-3">
+                    <form class="navbar-form" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Cari Proyek" name="q">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="page-scroll">
                         <a><?php echo $user; ?></a>
@@ -58,7 +73,11 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="masuk/logout" style="color:#18BC9C;">Logout</a>
+                                <a style="color:#18BC9C;">Kontak Admin</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="<?php echo base_url('masuk/logout');?>" style="color:#18BC9C;">Keluar</a>
                             </li>
                         </ul>
                     </li>

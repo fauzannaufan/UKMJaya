@@ -16,7 +16,7 @@ class Daftar extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$data['list_provinsi'] = $this->data_model->get_list_provinsi();
-		$this->load->view('header-biasa');
+		$this->load->view('header');
 		$this->load->view('daftar', $data);
 		$this->load->view('footer');
 	}

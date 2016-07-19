@@ -13,18 +13,24 @@ class Masuk extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('header-biasa');
+		$this->load->view('header');
 		$this->load->view('masuk');
 		$this->load->view('footer');	
 	}
 
 	public function proses()
 	{
-		$user_id = $this->masuk_model->proses();
-		if ($user_id == 0) {
+		$user = $this->masuk_model->proses();
+		if ($user == 0) {
 			echo "Gagal masuk ke akun. <a href='../masuk'>Kembali</a>";
 		} else {
-			set_cookie('user_id', $user_id, 3600, 'localhost');
+			if ($user[0]['id_funder'] == NULL) {
+				set_cookie('user_id', $user[0]['id_ukm'], 3600, 'localhost');
+				set_cookie('jenis_user', 'ukm', 3600, 'localhost');
+			} else {
+				set_cookie('user_id', $user[0]['id_funder'], 3600, 'localhost');
+				set_cookie('jenis_user', 'funder', 3600, 'localhost');
+			}
 			redirect('index.php', 'refresh');
 		}
 	}

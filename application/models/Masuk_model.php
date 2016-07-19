@@ -13,16 +13,12 @@ class Masuk_model extends CI_Model {
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 
-		$this->db->select('id_user');
-		$this->db->where('email', $email);
-		$this->db->where('password', $password);
-		$this->db->from('user');
-		$query = $this->db->get();
+		$query = $this->db->query("SELECT funder.id_user AS id_funder, ukm.id_user AS id_ukm FROM user LEFT JOIN ukm ON user.id_user = ukm.id_user LEFT JOIN funder ON user.id_user = funder.id_user WHERE email = '".$email."' AND password = '".$password."'");
 
 		$hasil = $query->result_array();
 		
 		if (count($hasil) > 0) {
-			return $hasil[0]['id_user'];
+			return $hasil;
 		} else {
 			return 0;
 		}

@@ -23,14 +23,20 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('cookie');
 		if (get_cookie('user_id') == NULL) {
-			$this->load->view('header-biasa');
+			$this->load->view('header');
+			$this->load->view('index');
 		} else {
 			$this->load->model('data_model');
 			$data_user = $this->data_model->get_user(get_cookie('user_id'));
 			$data['user'] = $data_user->result_array()[0]['nama'];
-			$this->load->view('header-user', $data);
+			if (get_cookie('jenis_user') == 'ukm') {
+				$this->load->view('header-ukm', $data);
+				$this->load->view('index-ukm');
+			} else {
+				$this->load->view('header-funder', $data);
+				$this->load->view('index');
+			}
 		}
-		$this->load->view('index');
 		$this->load->view('footer');
 	}
 
