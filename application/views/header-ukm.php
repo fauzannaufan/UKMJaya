@@ -46,11 +46,6 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="width: 1250px;">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="<?php echo base_url('proyek/buat'); ?>">Buat Proyek</a>
-                    </li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="page-scroll">
                         <a><?php echo $user; ?></a>

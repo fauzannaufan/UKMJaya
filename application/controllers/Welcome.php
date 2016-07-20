@@ -22,16 +22,22 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->helper('cookie');
+		$this->load->model('data_model');
+
 		if (get_cookie('user_id') == NULL) {
 			$this->load->view('header');
 			$this->load->view('index');
 		} else {
-			$this->load->model('data_model');
 			$data_user = $this->data_model->get_user(get_cookie('user_id'));
 			$data['user'] = $data_user->result_array()[0]['nama'];
 			if (get_cookie('jenis_user') == 'ukm') {
 				$this->load->view('header-ukm', $data);
-				$this->load->view('index-ukm');
+				$check_user = $this->data_model->check_ukm(get_cookie('user_id'));
+				if ($check_user->result_array()[0]['ada_data_ukm'] == 0 && $check_user->result_array()[0]['ada_data_pemilik'] == 0 ) {
+					$this->load->view('index-ukm-baru');
+				} else {
+					$this->load->view('index-ukm');
+				}
 			} else {
 				$this->load->view('header-funder', $data);
 				$this->load->view('index');

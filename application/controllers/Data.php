@@ -21,6 +21,11 @@ class Data extends CI_Controller {
 		echo(json_encode($this->data_model->get_user($id_user)));	
 	}
 
+	public function get_sub_sektor($id_sektor) {
+		header('Content-Type: application/x-json; charset=utf-8');
+		echo(json_encode($this->data_model->get_sub_sektor($id_sektor)));		
+	}
+
 }
 
 ?>
