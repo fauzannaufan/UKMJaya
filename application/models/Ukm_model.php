@@ -6,6 +6,7 @@ class Ukm_model extends CI_Model {
 	{
 		$this->load->database();
 		$this->load->helper('cookie');
+		$this->load->helper('string');
 	}
 
 	public function proses_pendaftaran()
@@ -44,6 +45,28 @@ class Ukm_model extends CI_Model {
 		);
 
 		$this->db->insert('data_pemilik_ukm', $data_pemilik);
+	}
+
+	public function proses_proposal()
+	{
+		$hadiah = '';
+		$jenis = $this->input->post('jenis');
+		$id_hadiah = 1;
+		foreach ($this->input->post('jumlah') as $key => $j) {
+			$hadiah = $hadiah.$id_hadiah.":".$j.";".$jenis[$key].";";
+			$id_hadiah = $id_hadiah+1;
+		}
+
+		$data_proposal = array(
+			'id_proposal' => random_string('numeric', 15),
+			'id_ukm' => get_cookie('user_id'),
+			'kebutuhan_dana' => $this->input->post('kebutuhan_dana'),
+			'konten' => $this->input->post('alasan'),
+			'hadiah' => $hadiah,
+			'batas_waktu' => $this->input->post('batas_waktu')
+		);
+
+		$this->db->insert('proposal', $data_proposal);
 	}
 
 

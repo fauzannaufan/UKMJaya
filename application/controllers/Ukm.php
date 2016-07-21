@@ -59,7 +59,8 @@ class Ukm extends CI_Controller {
 		}
 	}
 
-	public function proses_pendaftaran() {
+	public function proses_pendaftaran()
+	{
 		if (get_cookie('user_id') == NULL || get_cookie('jenis_user') == 'funder') {
 			echo "Anda belum login atau anda tidak mendaftar sebagai UKM.<br>";
 			echo "Silakan <a href='../masuk'>Masuk</a> atau <a href='../daftar'>Daftar</a> terlebih dahulu.";
@@ -69,12 +70,24 @@ class Ukm extends CI_Controller {
 		}
 	}
 
-	public function proses_pendaftaran_pemilik() {
+	public function proses_pendaftaran_pemilik()
+	{
 		if (get_cookie('user_id') == NULL || get_cookie('jenis_user') == 'funder') {
 			echo "Anda belum login atau anda tidak mendaftar sebagai UKM.<br>";
 			echo "Silakan <a href='../masuk'>Masuk</a> atau <a href='../daftar'>Daftar</a> terlebih dahulu.";
 		} else {
 			$this->ukm_model->proses_pendaftaran_pemilik();
+			redirect('index.php', 'refresh');
+		}
+	}
+
+	public function proses_proposal()
+	{
+		if (get_cookie('user_id') == NULL || get_cookie('jenis_user') == 'funder') {
+			echo "Anda belum login atau anda tidak mendaftar sebagai UKM.<br>";
+			echo "Silakan <a href='../masuk'>Masuk</a> atau <a href='../daftar'>Daftar</a> terlebih dahulu.";
+		} else {
+			$this->ukm_model->proses_proposal();
 			redirect('index.php', 'refresh');
 		}
 	}
