@@ -73,11 +73,7 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a style="color:#18BC9C;">Kontak Admin</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="<?php echo base_url('masuk/logout');?>" style="color:#18BC9C;">Keluar</a>
+                                <a href="<?php echo base_url('keluar');?>" style="color:#18BC9C;">Keluar</a>
                             </li>
                         </ul>
                     </li>

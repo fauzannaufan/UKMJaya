@@ -36,7 +36,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="background-color:#2C3E50; padding-left: 35px; width: 430px; padding-right: 35px; padding-top: 15px; padding-bottom: 15px;">
                     <h3 style="text-align: center; margin-bottom: 30px;">Daftar Akun</h3>
-                    <?php echo form_open('daftar/proses'); ?>
+                    <?php echo form_open('user/proses_daftar'); ?>
                         <div class="row control-group">
                             <div class="col-md-6" style="text-align:left;">
                                 Saya mendaftar sebagai

@@ -75,6 +75,19 @@ class Data_model extends CI_Model {
 		return $this->db->get('data_bentuk_usaha');
 	}
 
+	public function get_proposal($id_proposal)
+	{
+		$this->db->where('id_proposal', $id_proposal);
+		return $this->db->get('proposal');
+	}
+
+	public function get_pendanaan($id_proposal)
+	{
+		$this->db->select('sum(jumlah) AS jumlah_dana, count(id_funder) AS jumlah_funder');
+		$this->db->where('id_proposal', $id_proposal);
+		return $this->db->get('dana');
+	}
+
 }
 
 ?>

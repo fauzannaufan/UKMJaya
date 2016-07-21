@@ -5,7 +5,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="background-color:#2C3E50; padding-left: 35px; width: 430px; padding-right: 35px; padding-top: 15px; padding-bottom: 15px;">
                     <h3 style="text-align: center; margin-bottom: 30px;">Masuk Akun</h3>
-                    <?php echo form_open('masuk/proses'); ?>
+                    <?php echo form_open('user/proses_masuk'); ?>
                         <div class="row control-group">
                             <div class="form-group col-xs-12">
                                 <p style="text-align:left; font-size:14px;">Email</p>

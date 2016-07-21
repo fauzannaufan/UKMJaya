@@ -18,7 +18,6 @@ class Ukm extends CI_Controller {
 			echo "Anda tidak bisa membuat proposal.<br>";
 			echo "Silakan <a href='../masuk'>Masuk</a> atau <a href='../daftar'>Daftar</a> terlebih dahulu.";
 		} else {
-			$this->load->model('data_model');
 			$data_user = $this->data_model->get_user(get_cookie('user_id'));
 			$data['user'] = $data_user->result_array()[0]['nama'];
 			$this->load->view('header-ukm', $data);
@@ -89,6 +88,31 @@ class Ukm extends CI_Controller {
 		} else {
 			$this->ukm_model->proses_proposal();
 			redirect('index.php', 'refresh');
+		}
+	}
+
+	public function lihat_proposal($id_proposal=NULL)
+	{
+		if ($id_proposal === NULL) {
+			show_404();
+		} else {
+			$data_user = $this->data_model->get_user(get_cookie('user_id'));
+			$data_proposal = $this->data_model->get_proposal($id_proposal);
+			$id_ukm = $data_proposal->result_array()[0]['id_ukm'];
+
+			$data['user'] = $data_user->result_array()[0]['nama'];
+			$data['proposal'] = $data_proposal;
+			$data['ukm'] = $this->data_model->get_user($id_ukm)->result_array()[0]['nama'];
+			$data['pendanaan'] = $this->data_model->get_pendanaan($id_proposal)->result_array()[0];
+			if (get_cookie('jenis_user') == 'ukm') {
+				$this->load->view('header-ukm', $data);
+			} else if (get_cookie('jenis_user') == 'funder') {
+				$this->load->view('header-funder', $data);
+			} else {
+				$this->load->view('header');
+			}
+			$this->load->view('lihat-proposal', $data);
+			$this->load->view('footer');
 		}
 	}
 
