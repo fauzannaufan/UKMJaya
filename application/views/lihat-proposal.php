@@ -36,18 +36,22 @@
                                 Rp<?php if ($pendanaan['jumlah_dana'] == NULL) {
                                     echo "0";
                                 } else {
-                                    echo $pendanaan['jumlah_dana'];
+                                    echo number_format($pendanaan['jumlah_dana'],0,",",".");
                                 } ?>
                             </h2>
                             <p>dari target Rp<?php echo number_format($row->kebutuhan_dana,0,",","."); ?></p>
                         </div>
                         <div class="row">
-                            <h2>10</h2>
+                            <h2><?php echo ceil((strtotime($row->batas_waktu)-time())/60/60/24); ?></h2>
                             <p>hari lagi</p>
                         </div>
-                        <div class="row" style="margin-top:15px;">
-                            <button type="button" class="btn btn-primary" style="font-size:22px;width:60%;">Danai Proyek</button>
-                        </div>
+                        <?php if ($jenis_user == 'funder') { ?>
+                            <div class="row" style="margin-top:15px;">
+                                <a href="<?php echo $row->id_proposal; ?>/danai_proposal">
+                                    <button type="button" class="btn btn-primary" style="font-size:22px;width:60%;">Danai Permintaan</button>
+                                </a>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

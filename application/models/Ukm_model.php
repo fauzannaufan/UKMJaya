@@ -49,24 +49,30 @@ class Ukm_model extends CI_Model {
 
 	public function proses_proposal()
 	{
-		$hadiah = '';
-		$jenis = $this->input->post('jenis');
-		$id_hadiah = 1;
-		foreach ($this->input->post('jumlah') as $key => $j) {
-			$hadiah = $hadiah.$id_hadiah.":".$j.";".$jenis[$key].";";
-			$id_hadiah = $id_hadiah+1;
-		}
+
+		$id_proposal = random_string('numeric', 15);
 
 		$data_proposal = array(
-			'id_proposal' => random_string('numeric', 15),
+			'id_proposal' => $id_proposal,
 			'id_ukm' => get_cookie('user_id'),
 			'kebutuhan_dana' => $this->input->post('kebutuhan_dana'),
 			'konten' => $this->input->post('alasan'),
-			'hadiah' => $hadiah,
 			'batas_waktu' => $this->input->post('batas_waktu')
 		);
 
 		$this->db->insert('proposal', $data_proposal);
+
+		$jenis = $this->input->post('jenis');
+		foreach ($this->input->post('jumlah') as $key => $j) {
+			$data_hadiah = array(
+				'id_hadiah' => random_string('numeric', 17),
+				'id_proposal' => $id_proposal,
+				'hadiah' => $jenis[$key],
+				'minimal_pinjaman' => $j
+			);
+
+			$this->db->insert('hadiah_proposal', $data_hadiah);
+		}
 	}
 
 

@@ -102,6 +102,7 @@ class Ukm extends CI_Controller {
 
 			$data['user'] = $data_user->result_array()[0]['nama'];
 			$data['proposal'] = $data_proposal;
+			$data['jenis_user'] = get_cookie('jenis_user');
 			$data['ukm'] = $this->data_model->get_user($id_ukm)->result_array()[0]['nama'];
 			$data['pendanaan'] = $this->data_model->get_pendanaan($id_proposal)->result_array()[0];
 			if (get_cookie('jenis_user') == 'ukm') {

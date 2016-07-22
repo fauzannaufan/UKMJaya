@@ -88,6 +88,24 @@ class Data_model extends CI_Model {
 		return $this->db->get('dana');
 	}
 
+	public function get_hadiah_proposal($id_proposal, $jumlah_pinjaman) {
+		
+		$this->db->where('id_proposal', $id_proposal);
+		$this->db->where('minimal_pinjaman <=', $jumlah_pinjaman);
+		$query = $this->db->get('hadiah_proposal');
+
+		$list_hadiah = array();
+
+		if ($query->result()) {
+			foreach ($query->result() as $row) {
+				$list_hadiah[$row->minimal_pinjaman] = $row->hadiah;
+			}
+			return $list_hadiah;
+		} else {
+			return false;
+		}
+	}
+
 }
 
 ?>
