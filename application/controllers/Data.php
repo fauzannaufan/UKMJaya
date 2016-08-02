@@ -26,7 +26,7 @@ class Data extends CI_Controller {
 		echo(json_encode($this->data_model->get_sub_sektor($id_sektor)));
 	}
 
-	public function get_hadiah_proposal($id_proposal = 0, $jumlah_pinjaman = 0) {
+	public function get_hadiah_proposal($id_proposal = "", $jumlah_pinjaman = 0) {
 		header('Content-Type: application/x-json; charset=utf-8');
 		echo(json_encode($this->data_model->get_hadiah_proposal($id_proposal, $jumlah_pinjaman)));	
 	}

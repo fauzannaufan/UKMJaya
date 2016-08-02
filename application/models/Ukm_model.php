@@ -50,7 +50,7 @@ class Ukm_model extends CI_Model {
 	public function proses_proposal()
 	{
 
-		$id_proposal = random_string('numeric', 15);
+		$id_proposal = random_string('nozero', 15);
 
 		$data_proposal = array(
 			'id_proposal' => $id_proposal,

@@ -41,48 +41,33 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4">
-                    <img src="<?php echo base_url(); ?>resources/img/portfolio/cabin.png" class="img-responsive image-index" alt="">
-                    <div class="panel-ukm">
-                        <b><p class="judul-panel text-biasa rapat-kiri">Kuro-Kuro</p></b>
-                        <div class="progress" style="margin-bottom: 10px;">
-                            <div class="progress-bar" role="progressbar" style="width: 50%;">
+                <?php foreach ($proposal_populer->result() as $row) { ?>
+                    <a href="<?php echo base_url('proposal/'.$row->id_proposal); ?>">
+                    <div class="col-sm-4">
+                        <img src="<?php echo base_url(); ?>resources/img/portfolio/cabin.png" class="img-responsive image-index" alt="">
+                        <div class="panel-ukm">
+                            <b><p class="judul-panel text-biasa rapat-kiri"><?php echo $row->nama; ?></p></b>
+                            <div class="progress" style="margin-bottom: 10px;">
+                                <div class="progress-bar" role="progressbar" style="width: <?php echo $row->persentase; ?>%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="text-biasa rapat-kiri">
+                                        <?php 
+                                        if ($row->persentase == NULL)
+                                            echo 0;
+                                        else
+                                            echo number_format($row->persentase, 0);
+                                        ?>%
+                                    </p>
+                                </div>
+                                <div class="col-md-6"><p class="text-biasa rapat-kanan"><?php echo ceil((strtotime($row->batas_waktu)-time())/60/60/24); ?> hari lagi</p></div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6"><p class="text-biasa rapat-kiri">50%</p></div>
-                            <div class="col-md-6"><p class="text-biasa rapat-kanan">10 hari lagi</p></div>
-                        </div>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <img src="<?php echo base_url(); ?>resources/img/portfolio/cake.png" class="img-responsive image-index" alt="">
-                    <div class="panel-ukm">
-                        <b><p class="judul-panel text-biasa rapat-kiri">Sabana</p></b>
-                        <div class="progress" style="margin-bottom: 10px;">
-                            <div class="progress-bar" role="progressbar" style="width: 30%;">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6"><p class="text-biasa rapat-kiri">30%</p></div>
-                            <div class="col-md-6"><p class="text-biasa rapat-kanan">25 hari lagi</p></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <img src="<?php echo base_url(); ?>resources/img/portfolio/circus.png" class="img-responsive image-index" alt="">
-                    <div class="panel-ukm">
-                        <b><p class="judul-panel text-biasa rapat-kiri">Bandung Fried Chicken</p></b>
-                        <div class="progress" style="margin-bottom: 10px;">
-                            <div class="progress-bar" role="progressbar" style="width: 90%;">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6"><p class="text-biasa rapat-kiri">90%</p></div>
-                            <div class="col-md-6"><p class="text-biasa rapat-kanan">1 hari lagi</p></div>
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                <?php } ?>
             </div>
         </div>
     </header>

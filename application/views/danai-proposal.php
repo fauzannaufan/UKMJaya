@@ -1,17 +1,19 @@
 	<script src="<?php echo base_url('/resources/jquery/jquery/dist/jquery.js') ?>"></script>
 	<script type="text/javascript">
-        
+
         function change_hadiah(str) {
             $('#pilihan_hadiah > option').remove();
+            document.getElementById("button_lanjut").className = "btn btn-default disabled";
             $.ajax({
                 type: "POST",
                 url : "http://localhost/ukmjaya/data/get_hadiah_proposal/"+<?php echo $proposal->result_array()[0]['id_proposal']; ?>+"/"+str,
                 success : function(hadiah) {
                     $.each(hadiah, function(minimal_pinjaman,hadiah) {
-                    	var opt = $('<option/>');
+                    	opt = $('<option/>');
                         opt.val(minimal_pinjaman);
                         opt.text(hadiah);
                         $('#pilihan_hadiah').append(opt);
+                        document.getElementById("button_lanjut").className = "btn btn-default";
                     });
                 }
             });
@@ -54,7 +56,7 @@
                         			</select>
                         		</div>
                         		<div class="col-md-4">
-                        			<button type="button" class="btn btn-default disabled" style="width:100%; height:66px;">Lanjut</button>
+                        			<button type="button" id="button_lanjut" class="btn btn-default disabled" style="width:100%; height:66px;">Lanjut</button>
                         		</div>
                         	</div>
                         </div>

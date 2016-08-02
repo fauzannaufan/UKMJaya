@@ -24,9 +24,10 @@ class Welcome extends CI_Controller {
 		$this->load->helper('cookie');
 		$this->load->model('data_model');
 
+		$data['proposal_populer'] = $this->data_model->get_proposal_populer();
 		if (get_cookie('user_id') == NULL) {
 			$this->load->view('header');
-			$this->load->view('index');
+			$this->load->view('index', $data);
 		} else {
 			$data_user = $this->data_model->get_user(get_cookie('user_id'));
 			$data['user'] = $data_user->result_array()[0]['nama'];

@@ -5,6 +5,18 @@
             font-size:18px;
         }
 
+        .timeline {
+            font-size:16px;
+        }
+
+        .left {
+            text-align:left;
+        }
+
+        .right {
+            text-align: right;
+        }
+
     </style>
 
     <!-- Lihat Proposal -->
@@ -25,6 +37,51 @@
                         <p class="proposal">
                             <?php echo $row->konten; ?>
                         </p>
+                        <?php
+                            $bulan = array('','Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+                        ?>
+                        <div class="row" style="padding-left: 15px; padding-right: 15px;">
+                            <h2>Timeline Proposal</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="timeline left">Pendanaan</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="timeline right">
+                                        <?php
+                                        echo $bulan[date("n", strtotime($row->batas_waktu))];
+                                        echo date(" Y", strtotime($row->batas_waktu));
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="timeline left">Penggunaan dana dan pembuatan hadiah</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="timeline right">
+                                        <?php
+                                        echo $bulan[date("n", strtotime($row->waktu_penggunaan))];
+                                        echo date(" Y", strtotime($row->waktu_penggunaan));
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="timeline left">Pengembalian uang dan pengiriman hadiah</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="timeline right">
+                                        <?php
+                                        echo $bulan[date("n", strtotime($row->waktu_pengembalian))];
+                                        echo date(" Y", strtotime($row->waktu_pengembalian));
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4" style="text-align: left; padding-left:50px;">
                         <div class="row">

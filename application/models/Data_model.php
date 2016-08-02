@@ -106,6 +106,10 @@ class Data_model extends CI_Model {
 		}
 	}
 
+	public function get_proposal_populer() {
+		return $this->db->query("SELECT proposal.id_proposal, (sum(jumlah)/kebutuhan_dana*100) AS persentase, nama, batas_waktu FROM dana RIGHT JOIN proposal ON dana.id_proposal = proposal.id_proposal JOIN user ON proposal.id_ukm = user.id_user GROUP BY proposal.id_proposal");
+	}
+
 }
 
 ?>
