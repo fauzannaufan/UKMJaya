@@ -7,9 +7,10 @@ class Funder extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('cookie');
 		$this->load->helper('url');
-		//$this->load->helper('form');
+		$this->load->helper('form');
 		$this->load->model('data_model');
 		$this->load->model('ukm_model');
+		$this->load->model('funder_model');
 	}
 
 	public function danai_proposal($id_proposal=NULL)
@@ -26,7 +27,6 @@ class Funder extends CI_Controller {
 				$id_ukm = $data_proposal->result_array()[0]['id_ukm'];
 
 				$data['proposal'] = $data_proposal;
-				$data['jenis_user'] = get_cookie('jenis_user');
 				$data['ukm'] = $this->data_model->get_user($id_ukm)->result_array()[0]['nama'];
 				$data['user'] = $data_user->result_array()[0]['nama'];
 				$this->load->view('header-funder', $data);
@@ -36,6 +36,15 @@ class Funder extends CI_Controller {
 		}
 	}
 
+	public function proses_pendanaan()
+	{
+		if (get_cookie('jenis_user') == 'ukm' || get_cookie('user_id') == NULL) {
+			echo "Anda belum login atau anda tidak mendaftar sebagai Funder.<br>";
+			echo "Silakan <a href='../../masuk'>Masuk</a> atau <a href='../../daftar'>Daftar</a> terlebih dahulu.";
+		} else {
+			$this->funder_model->proses_pendanaan(get_cookie('user_id'));
+		}
+	}
 
 }
 

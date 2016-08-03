@@ -70,7 +70,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p class="timeline left">Pengembalian uang dan pengiriman hadiah</p>
+                                    <p class="timeline left">Pengembalian dana pinjaman dan pengiriman hadiah</p>
                                 </div>
                                 <div class="col-md-6">
                                     <p class="timeline right">

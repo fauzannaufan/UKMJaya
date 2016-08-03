@@ -98,7 +98,7 @@ class Data_model extends CI_Model {
 
 		if ($query->result()) {
 			foreach ($query->result() as $row) {
-				$list_hadiah[$row->minimal_pinjaman] = $row->hadiah;
+				$list_hadiah[$row->id_hadiah] = $row->hadiah;
 			}
 			return $list_hadiah;
 		} else {
@@ -107,7 +107,7 @@ class Data_model extends CI_Model {
 	}
 
 	public function get_proposal_populer() {
-		return $this->db->query("SELECT proposal.id_proposal, (sum(jumlah)/kebutuhan_dana*100) AS persentase, nama, batas_waktu FROM dana RIGHT JOIN proposal ON dana.id_proposal = proposal.id_proposal JOIN user ON proposal.id_ukm = user.id_user GROUP BY proposal.id_proposal");
+		return $this->db->query("SELECT proposal.id_proposal, (sum(jumlah)/kebutuhan_dana*100) AS persentase, nama, batas_waktu FROM dana RIGHT JOIN proposal ON dana.id_proposal = proposal.id_proposal JOIN user ON proposal.id_ukm = user.id_user WHERE is_populer = true GROUP BY proposal.id_proposal");
 	}
 
 }

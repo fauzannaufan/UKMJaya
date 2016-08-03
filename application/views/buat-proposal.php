@@ -49,9 +49,25 @@
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12">
-                                <p class="label-form">Batas Waktu Pengajuan</p>
+                                <p class="label-form">Batas Waktu Pendanaan Proposal</p>
                                 <div class="col-md-6" style="padding:0px;">
                                     <input type="date" name="batas_waktu" class="form-control buat-proposal">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12">
+                                <p class="label-form">Batas Waktu Penggunaan Dana dan Pembuatan Hadiah</p>
+                                <div class="col-md-6" style="padding:0px;">
+                                    <input type="date" name="waktu_penggunaan" class="form-control buat-proposal">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12">
+                                <p class="label-form">Batas Waktu Pengembalian Dana Pinjaman dan Pengiriman Hadiah</p>
+                                <div class="col-md-6" style="padding:0px;">
+                                    <input type="date" name="waktu_pengembalian" class="form-control buat-proposal">
                                 </div>
                             </div>
                         </div>

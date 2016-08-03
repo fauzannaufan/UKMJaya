@@ -62,6 +62,11 @@ class User extends CI_Controller {
 		}
 	}
 
+	public function danai_proposal()
+	{
+		
+	}
+
 }
 
 ?>
