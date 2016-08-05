@@ -53,6 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['proposal/(:num)/danai_proposal'] = 'funder/danai_proposal/$1';
+$route['proposal/(:num)/kelola_proposal'] = 'ukm/kelola_proposal/$1';
 $route['proposal/(:num)'] = 'ukm/lihat_proposal/$1';
 $route['daftar'] = 'user/daftar';
 $route['masuk'] = 'user/masuk';

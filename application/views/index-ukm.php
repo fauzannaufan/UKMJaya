@@ -38,30 +38,59 @@
 				<div class="col-sm-4">
                     <div class="panel-ukm">
                         <b><p class="judul-panel">Data UKM</p></b>
-                        <p class="text-biasa">Nama : Kuro-Kuro</p>
-                        <p class="text-biasa">Jenis UKM : Makanan</p>
-                        <p class="text-biasa">Alamat : Depan ITB</p>
-                        <p class="text-biasa">Kabupaten/Kota : Kota Bandung</p>
-                        <p class="text-biasa text-bawah">Provinsi : Jawa Barat</p>
-                        <button class="btn btn-default">Ubah Data UKM</button>
+                        <?php foreach ($ukm->result() as $row) { ?>
+                        	<p class="text-biasa">Nama : <?php echo $user; ?></p>
+                        	<p class="text-biasa">Sektor UKM : <?php echo ucwords(strtolower($row->nama));?></p>
+                        	<p class="text-biasa">Jenis UKM : <?php echo $row->jenis;?></p>
+                        	<p class="text-biasa text-bawah">Alamat : <?php echo $row->alamat; ?></p>
+                        <?php } ?>
+                        <!-- <button class="btn btn-default">Ubah Data UKM</button> -->
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="panel-ukm">
                         <b><p class="judul-panel">Data Pemilik UKM</p></b>
-                        <p class="text-biasa">Nama : Pak Haji</p>
-                        <p class="text-biasa">Alamat : Belakang ITB</p>
-                        <p class="text-biasa">Kabupaten/Kota : Kota Bandung</p>
-                        <p class="text-biasa text-bawah">Provinsi : Jawa Barat</p>
-                        <button class="btn btn-default">Ubah Data Pemilik UKM</button>
+                        <?php foreach ($pemilik_ukm->result() as $row) { ?>
+                        	<p class="text-biasa">Nama : <?php echo $row->nama; ?></p>
+                        	<p class="text-biasa">Alamat : <?php echo $row->alamat_rt_rw; ?></p>
+                        	<p class="text-biasa">No Telepon : <?php echo $row->no_telepon; ?></p>
+                        	<p class="text-biasa text-bawah">No Handphone : <?php echo $row->no_hp; ?></p>
+                        <?php } ?>
+                        <!-- <button class="btn btn-default">Ubah Data Pemilik UKM</button> -->
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="panel-ukm">
                         <b><p class="judul-panel">Histori Proposal</p></b>
-                        <p class="text-biasa">Proposal 1 : Sukses</p>
-                        <p class="text-biasa text-bawah">Proposal 2 : Gagal</p>
-                        <button class="btn btn-default">Lihat Detail Histori</button>
+                        <?php 
+                        $i = 1;
+                        foreach ($proposal_ukm->result() as $row) {
+                            echo "<div class=\"row\">";
+                            echo "<div class=\"col-md-6\">";
+                        	if ($proposal_ukm->num_rows() == $i) {
+                        		echo "<p class=\"text-biasa text-bawah\">Proposal ".$i."<br>";
+                        	} else {
+                        		echo "<p class=\"text-biasa\">Proposal ".$i."<br>";
+                        	}
+
+                        	if (time() < strtotime($row->batas_waktu)) {
+                        		echo "Pendanaan Proposal</p>";
+                                echo "</div>";
+                                echo "<div class=\"col-md-2\" style=\"margin-right:10px;\"><a href=\"proposal/".$row->id_proposal."/kelola_proposal\"><button class=\"btn btn-default\">Kelola</button></a></div>";
+                        	} else if (time() > strtotime($row->batas_waktu) && time() < strtotime($row->waktu_penggunaan)) {
+                        		echo "Penggunaan Dana dan Pembuatan Hadiah</p>";
+                                echo "</div><div class=\"col-md-2\"></div>";
+                        	} else if (time() > strtotime($row->waktu_pengembalian)) {
+                        		echo "Selesai</p>";
+                                echo "</div><div class=\"col-md-3\"></div>";
+                        	} else {
+                        		echo "Pengembalian Dana Pinjaman</p>";
+                                echo "</div><div class=\"col-md-3\"></div>";
+                        	}
+                            echo "<div class=\"col-md-3\"><a href=\"proposal/".$row->id_proposal."\"><button class=\"btn btn-default\">Lihat</button></a></div>";
+                            echo "</div>";
+                        	$i = $i+1;
+                        } ?>	
                     </div>
                 </div>
 			</div>

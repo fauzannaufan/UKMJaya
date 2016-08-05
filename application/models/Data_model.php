@@ -81,6 +81,12 @@ class Data_model extends CI_Model {
 		return $this->db->get('proposal');
 	}
 
+	public function get_proposal_ukm($id_ukm)
+	{
+		$this->db->where('id_ukm', $id_ukm);
+		return $this->db->get('proposal');
+	}
+
 	public function get_pendanaan($id_proposal)
 	{
 		$this->db->select('sum(jumlah) AS jumlah_dana, count(id_funder) AS jumlah_funder');
@@ -88,7 +94,8 @@ class Data_model extends CI_Model {
 		return $this->db->get('dana');
 	}
 
-	public function get_hadiah_proposal($id_proposal, $jumlah_pinjaman) {
+	public function get_hadiah_proposal($id_proposal, $jumlah_pinjaman)
+	{
 		
 		$this->db->where('id_proposal', $id_proposal);
 		$this->db->where('minimal_pinjaman <=', $jumlah_pinjaman);
@@ -106,8 +113,29 @@ class Data_model extends CI_Model {
 		}
 	}
 
-	public function get_proposal_populer() {
+	public function get_proposal_populer()
+	{
 		return $this->db->query("SELECT proposal.id_proposal, (sum(jumlah)/kebutuhan_dana*100) AS persentase, nama, batas_waktu FROM dana RIGHT JOIN proposal ON dana.id_proposal = proposal.id_proposal JOIN user ON proposal.id_ukm = user.id_user WHERE is_populer = true GROUP BY proposal.id_proposal");
+	}
+
+	public function get_data_ukm($id_ukm)
+	{
+		$this->db->select('*');
+		$this->db->from('data_ukm');
+		$this->db->join('data_sektor', 'data_ukm.sektor = data_sektor.id');
+		$this->db->where('id_ukm', $id_ukm);
+		return $this->db->get();
+	}
+
+	public function get_pemilik_ukm($id_ukm)
+	{
+		$this->db->where('id_ukm', $id_ukm);
+		return $this->db->get('data_pemilik_ukm');
+	}
+
+	public function get_detail_proposal($id_proposal)
+	{
+		return $this->db->query("SELECT jumlah, hadiah, nama, waktu_pendanaan FROM `dana` JOIN `hadiah_proposal` ON `dana`.`id_proposal` = `hadiah_proposal`.`id_proposal` JOIN `user` ON `dana`.`id_funder` = `user`.`id_user` WHERE `dana`.id_proposal = ".$id_proposal);
 	}
 
 }

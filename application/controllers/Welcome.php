@@ -37,7 +37,10 @@ class Welcome extends CI_Controller {
 				if ($check_user->result_array()[0]['ada_data_ukm'] == 0 && $check_user->result_array()[0]['ada_data_pemilik'] == 0 ) {
 					$this->load->view('index-ukm-baru');
 				} else {
-					$this->load->view('index-ukm');
+					$data['ukm'] = $this->data_model->get_data_ukm(get_cookie('user_id'));
+					$data['pemilik_ukm'] = $this->data_model->get_pemilik_ukm(get_cookie('user_id'));
+					$data['proposal_ukm'] = $this->data_model->get_proposal_ukm(get_cookie('user_id'));
+					$this->load->view('index-ukm', $data);
 				}
 			} else {
 				$this->load->view('header-funder', $data);
